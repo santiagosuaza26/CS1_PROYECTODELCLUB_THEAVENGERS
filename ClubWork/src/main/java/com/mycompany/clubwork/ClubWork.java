@@ -70,14 +70,14 @@ public class ClubWork {
             id = scanner.nextInt(); // Leer cedula del miembro
             validInput = true; // Si se ingresa correctamente un número, cambiamos la bandera
         } catch (InputMismatchException e) {
-            System.out.println("Error: Ingrese un número válido.");
+            System.out.println("Error: Ingrese un número valido.");
             scanner.next(); // Limpiar el valor incorrecto del buffer
         }
     }
 
     Member member = club.findMember(id);  // Buscar el miembro en el club
     if (member == null) {
-        System.out.println("No se encontró ningún miembro con esa cédula.");
+        System.out.println("No se encontro ningun miembro con esa cedula.");
     } else {
         int authorizedId = 0;
         validInput = false;
@@ -88,7 +88,7 @@ public class ClubWork {
                 authorizedId = scanner.nextInt();  // Leer cedula de la persona autorizada
                 validInput = true; // Si se ingresa correctamente un número, cambiamos la bandera
             } catch (InputMismatchException e) {
-                System.out.println("Error: Ingrese un número válido.");
+                System.out.println("Error: Ingrese un numero valido.");
                 scanner.next(); // Limpiar el valor incorrecto del buffer
             }
         }
