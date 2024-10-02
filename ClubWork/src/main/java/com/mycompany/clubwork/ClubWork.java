@@ -59,34 +59,58 @@ public class ClubWork {
                         }
                     }
                         
-                    case 2 -> {
-                        // Registrar una persona autorizada para un miembro
-                        System.out.print("Ingrese la cedula del miembro: ");
-                        int id = scanner.nextInt(); // Leer cedula del miembro
-                        Member member = club.findMember(id);  // Buscar el miembro en el club
-                        if (member == null) {
-                            System.out.println("No se encontro ningun miembro con esa cedula.");
-                        } else {
-                            System.out.print("Ingrese la cedula de la persona autorizada: ");
-                            int authorizedId = scanner.nextInt();  // Leer cedula de la persona autorizada
-                            scanner.nextLine();  // Limpiar el buffer del scanner
-                            
-                            System.out.print("Ingrese el nombre de la persona autorizada: ");
-                            String authorizedName = scanner.next();  // Leer nombre de la persona autorizada
-                            scanner.nextLine();  // Limpiar el buffer del scanner
-                            
-                            try {
-                                // Crear una nueva persona autorizada
-                                AuthorizedAffiliate newAuthorized = new AuthorizedAffiliate(authorizedId, authorizedName);
-                                // Añadir la persona autorizada al miembro, pasando también el club para validar
-                                member.addAuthorizedPerson(newAuthorized, club);
-                                System.out.println("Persona autorizada registrada exitosamente.");
-                            } catch (Exception e) {
-                                // Mostrar error si algo salio mal
-                                System.out.println("Error: " + e.getMessage());
-                            }
-                        }
-                    }
+                   case 2 -> {
+    // Registrar una persona autorizada para un miembro
+    int id = 0;
+    boolean validInput = false;
+    
+    while (!validInput) {
+        try {
+            System.out.print("Ingrese la cedula del miembro: ");
+            id = scanner.nextInt(); // Leer cedula del miembro
+            validInput = true; // Si se ingresa correctamente un número, cambiamos la bandera
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Ingrese un número válido.");
+            scanner.next(); // Limpiar el valor incorrecto del buffer
+        }
+    }
+
+    Member member = club.findMember(id);  // Buscar el miembro en el club
+    if (member == null) {
+        System.out.println("No se encontró ningún miembro con esa cédula.");
+    } else {
+        int authorizedId = 0;
+        validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.print("Ingrese la cedula de la persona autorizada: ");
+                authorizedId = scanner.nextInt();  // Leer cedula de la persona autorizada
+                validInput = true; // Si se ingresa correctamente un número, cambiamos la bandera
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Ingrese un número válido.");
+                scanner.next(); // Limpiar el valor incorrecto del buffer
+            }
+        }
+
+        scanner.nextLine();  // Limpiar el buffer del scanner
+        System.out.print("Ingrese el nombre de la persona autorizada: ");
+        String authorizedName = scanner.next();  // Leer nombre de la persona autorizada
+        scanner.nextLine();  // Limpiar el buffer del scanner
+
+        try {
+            // Crear una nueva persona autorizada
+            AuthorizedAffiliate newAuthorized = new AuthorizedAffiliate(authorizedId, authorizedName);
+            // Añadir la persona autorizada al miembro, pasando también el club para validar
+            member.addAuthorizedPerson(newAuthorized, club);
+            System.out.println("Persona autorizada registrada exitosamente.");
+        } catch (Exception e) {
+            // Mostrar error si algo salió mal
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+
                         
                     case 3 -> {
                         // Pagar una factura pendiente
