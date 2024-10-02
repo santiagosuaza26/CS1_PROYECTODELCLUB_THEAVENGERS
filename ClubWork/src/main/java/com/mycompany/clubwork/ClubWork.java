@@ -70,7 +70,7 @@ public class ClubWork {
             id = scanner.nextInt(); // Leer cedula del miembro
             validInput = true; // Si se ingresa correctamente un número, cambiamos la bandera
         } catch (InputMismatchException e) {
-            System.out.println("Error: Ingrese un número valido.");
+            System.out.println("Error: Ingrese un numero valido.");
             scanner.next(); // Limpiar el valor incorrecto del buffer
         }
     }
