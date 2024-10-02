@@ -5,7 +5,7 @@
 package com.mycompany.clubwork;
 
 import java.util.Scanner;
-
+import java.util.InputMismatchException;
 /**
  *
  * @author ssuaz
