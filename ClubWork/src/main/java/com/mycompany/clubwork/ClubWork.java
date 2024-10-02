@@ -28,7 +28,7 @@ public class ClubWork {
                try {
                    option = scanner.nextInt();  // Leer opción del usuario
                } catch (InputMismatchException e) {
-                   System.out.println("Error: Debe ingresar un número. Inténtelo de nuevo.");
+                   System.out.println("Error: Debe ingresar un numero.Intentalo de nuevo.");
                    scanner.nextLine(); // Limpiar el buffer del scanner
                    continue; // Volver al inicio del bucle
                }
@@ -43,7 +43,7 @@ public class ClubWork {
                                scanner.nextLine();  // Limpiar el buffer
                                break; // Salir del bucle si la entrada es válida
                            } catch (InputMismatchException e) {
-                               System.out.println("Error: La cédula debe ser un número. Inténtelo de nuevo.");
+                               System.out.println("Error: La cedula debe ser un número. Intentelo de nuevo.");
                                scanner.nextLine(); // Limpiar el buffer del scanner
                            }
                        }
