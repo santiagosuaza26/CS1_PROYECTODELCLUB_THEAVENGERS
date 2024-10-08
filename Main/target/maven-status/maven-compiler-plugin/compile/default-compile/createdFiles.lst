@@ -1,0 +1,11 @@
+com\mycompany\main\CustomsExceptions$MemberNotFoundException.class
+com\mycompany\main\CustomsExceptions$UnpaidBillsException.class
+com\mycompany\main\CustomsExceptions$ExceedsMaxFundsException.class
+com\mycompany\main\CustomsExceptions$MultipleAuthorizedPersonsException.class
+com\mycompany\main\CustomsExceptions.class
+com\mycompany\main\CustomsExceptions$VIPMemberDeletionException.class
+com\mycompany\main\Main.class
+com\mycompany\main\VIPMember.class
+com\mycompany\main\Club.class
+com\mycompany\main\RegularMember.class
+com\mycompany\main\Member.class
