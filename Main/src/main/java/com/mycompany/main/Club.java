@@ -20,12 +20,12 @@ class Club {
 
     public boolean addMember(Member member) {
         if (members.containsKey(member.getId())) {
-            System.out.println("Member with this ID already exists.");
+            System.out.println("El socio con este cedula ya existe.");
             return false;
         }
 
         if (member instanceof VIPMember && vipCount >= 3) {
-            System.out.println("Cannot add more VIP members.");
+            System.out.println("No se pueden agregar mas socios VIP.");
             return false;
         }
 
@@ -40,22 +40,22 @@ class Club {
     public boolean removeMember(String id) {
         Member member = members.get(id);
         if (member == null) {
-            System.out.println("Member not found.");
+            System.out.println("socio no encontrado.");
             return false;
         }
 
         if (member instanceof VIPMember) {
-            System.out.println("Cannot remove VIP members.");
+            System.out.println("No se pueden eliminar socios VIP.");
             return false;
         }
 
         if (member.hasUnpaidBills()) {
-            System.out.println("Member has unpaid bills.");
+            System.out.println("El socio tiene deudas pendientes..");
             return false;
         }
 
         if (member.getAuthorizedCount() > 1) {
-            System.out.println("Member has more than one authorized person.");
+            System.out.println("tiene más de una persona autorizada..");
             return false;
         }
 
@@ -66,12 +66,12 @@ class Club {
     public void showMemberInfo(String id) {
         Member member = members.get(id);
         if (member != null) {
-            System.out.println("ID: " + member.getId());
-            System.out.println("Name: " + member.getName());
-            System.out.println("Funds: " + member.getFunds());
-            System.out.println("Type: " + member.getMemberType());
+            System.out.println("cedula: " + member.getId());
+            System.out.println("Nombre: " + member.getName());
+                System.out.println("Fondos: " + member.getFunds());
+            System.out.println("Tipo: " + member.getMemberType());
         } else {
-            System.out.println("Member not found.");
+            System.out.println("Socio No encontrado.");
         }
     }
 }
