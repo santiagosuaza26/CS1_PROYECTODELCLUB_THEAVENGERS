@@ -1,22 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.main;
 import java.util.HashSet;
 import java.util.HashMap;
 
-/**
- *
- * @author ssuaz
- */
 
 abstract class Member {
-    private String id;
-    private String name;
+    private final String id;
+    private final String name;
     private double funds;
-    private HashSet<String> authorizedPeople;
-    private HashMap<String, Double> unpaidBills;
+    private final HashSet<String> authorizedPeople;
+    private final HashMap<String, Double> unpaidBills;
 
     public Member(String id, String name, double initialFunds) {
         this.id = id;
@@ -48,6 +41,9 @@ abstract class Member {
             System.out.println("Cannot add more authorized people.");
         }
     }
+    public HashSet<String> getAuthorizedPeople() {
+        return new HashSet<>(authorizedPeople); // Devuelve una copia para evitar modificaciones externas
+    }
 
     public boolean payBill(String bill) {
         if (unpaidBills.containsKey(bill)) {
@@ -78,5 +74,6 @@ abstract class Member {
     public int getAuthorizedCount() {
         return authorizedPeople.size();
     }
-}
+    
 
+}
