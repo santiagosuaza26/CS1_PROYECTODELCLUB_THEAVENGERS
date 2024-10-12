@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 /**
  *
+ * 
+}
+
  * @author ssuaz
  */
 class Club {
@@ -64,14 +67,24 @@ class Club {
     }
 
     public void showMemberInfo(String id) {
-        Member member = members.get(id);
-        if (member != null) {
-            System.out.println("cedula: " + member.getId());
-            System.out.println("Nombre: " + member.getName());
-                System.out.println("Fondos: " + member.getFunds());
-            System.out.println("Tipo: " + member.getMemberType());
+    Member member = members.get(id);
+    if (member != null) {
+        StringBuilder info = new StringBuilder();
+        info.append("Cédula: ").append(member.getId()).append("\n");
+        info.append("Nombre: ").append(member.getName()).append("\n");
+        info.append("Fondos: ").append(member.getFunds()).append("\n");
+        info.append("Tipo: ").append(member.getMemberType()).append("\n");
+        info.append("Personas autorizadas: ").append(member.getAuthorizedCount()).append("\n");
+        
+        if (member.getAuthorizedCount() <= 0) {
+            info.append("No hay personas autorizadas.\n");
         } else {
-            System.out.println("Socio No encontrado.");
+            info.append("Nombres: ").append(String.join(", ", member.getAuthorizedPeople())).append("\n");
         }
+
+        System.out.println(info.toString());
+    } else {
+        System.out.println("Socio no encontrado.");
     }
+}
 }
