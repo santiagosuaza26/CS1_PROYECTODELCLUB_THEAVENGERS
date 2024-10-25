@@ -70,7 +70,7 @@ class Club {
     Member member = members.get(id);
     if (member != null) {
         StringBuilder info = new StringBuilder();
-        info.append("Cédula: ").append(member.getId()).append("\n");
+        info.append("Cedula: ").append(member.getId()).append("\n");
         info.append("Nombre: ").append(member.getName()).append("\n");
         info.append("Fondos: ").append(member.getFunds()).append("\n");
         info.append("Tipo: ").append(member.getMemberType()).append("\n");
