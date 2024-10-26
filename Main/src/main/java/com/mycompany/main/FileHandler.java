@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class FileHandler {
 
-    // Método para guardar los datos de los miembros en un archivo
     public void guardarDatos(HashMap<String, Member> members) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("club_data.txt"))) {
             for (Member member : members.values()) {
@@ -19,7 +18,6 @@ public class FileHandler {
         }
     }
 
-    // Método para cargar los datos desde un archivo
     public void cargarDatos(Club club) {
         try (BufferedReader reader = new BufferedReader(new FileReader("club_data.txt"))) {
             String line;
