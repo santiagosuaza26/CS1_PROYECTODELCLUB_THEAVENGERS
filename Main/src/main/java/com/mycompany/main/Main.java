@@ -5,27 +5,25 @@ import javax.swing.JOptionPane;
 public class Main {
     public static void main(String[] args) {
         Club club = new Club();
-        FileHandler fileHandler = new FileHandler(); // Instancia de FileHandler
+        FileHandler fileHandler = new FileHandler(); 
 
-        // Cargar datos al inicio
         fileHandler.cargarDatos(club);
 
         String[] options = {"Agregar Socio", "Eliminar Socio", "Agregar fondo", "Agregar persona autorizada", "Pagar factura", "Ver informacion de socio", "Hacer Consumo", "Salir"};
         int choice;
 
-        Member member = null; // Declara la variable member una sola vez aquí
+        Member member = null; 
 
         do {
             choice = JOptionPane.showOptionDialog(null, "Elige una opcion", "Menu club",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
             switch (choice) {
-                case 0:  // Agregar Socio
+                case 0:  
                     String id = JOptionPane.showInputDialog("Ingrese Cedula:");
-                    // Validación de la cédula
                     if (!id.matches("\\d+")) {
                         JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
-                        break; // Salir del case sin continuar
+                        break; 
                     }
 
                     String name = JOptionPane.showInputDialog("Ingrese nombre:");
@@ -40,7 +38,7 @@ public class Main {
                     }
                     break;
 
-                case 1:  // Eliminar Socio
+                case 1:  
                     id = JOptionPane.showInputDialog("Ingrese cedula del socio a eliminar:");
                     if (club.removeMember(id)) {
                         JOptionPane.showMessageDialog(null, "Socio eliminado.");
@@ -49,10 +47,10 @@ public class Main {
                     }
                     break;
 
-                case 2:  // Agregar Fondos
+                case 2: 
                     id = JOptionPane.showInputDialog("Ingrese cedula:");
                     double amount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto a agregar:"));
-                    member = club.members.get(id);  // Asumimos acceso directo para simplicidad
+                    member = club.members.get(id);  
                     if (member != null) {
                         member.addFunds(amount);
                         JOptionPane.showMessageDialog(null, "Fondo agregado.");
@@ -61,11 +59,11 @@ public class Main {
                     }
                     break;
 
-                case 3:  // Agregar Persona Autorizada
+                case 3: 
                     String socioId = JOptionPane.showInputDialog("Ingrese Cedula del Socio:");
                     if (!socioId.matches("\\d+")) {
                         JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
-                        break; // Salir del case sin continuar
+                        break;
                     }
 
                     member = club.members.get(socioId);
@@ -73,7 +71,7 @@ public class Main {
                         String personId = JOptionPane.showInputDialog("Ingrese Cédula de la persona autorizada:");
                         if (!personId.matches("\\d+")) {
                             JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
-                            break; // Salir del case sin continuar
+                            break; 
                         }
                         String personName = JOptionPane.showInputDialog("Ingrese nombre de la persona autorizada:");
                         member.addAuthorizedPerson(personName);
@@ -83,7 +81,7 @@ public class Main {
                     }
                     break;
 
-                case 4:  // Pagar Factura
+                case 4:  
                     id = JOptionPane.showInputDialog("Ingrese cedula:");
                     member = club.members.get(id);
                     if (member != null) {
@@ -98,12 +96,12 @@ public class Main {
                     }
                     break;
 
-                case 5:  // Mostrar Información de Socio
+                case 5: 
                     id = JOptionPane.showInputDialog("Ingrese la cedula:");
                     club.showMemberInfo(id);
                     break;
 
-                case 6:  // Hacer Consumo
+                case 6:  
                     String memberId = JOptionPane.showInputDialog("Ingrese cedula del socio:");
                     member = club.members.get(memberId);
                     
@@ -113,11 +111,9 @@ public class Main {
                         String billConcept = JOptionPane.showInputDialog("Ingrese concepto del consumo:");
                         double consumptionAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese monto del consumo:"));
 
-                        // Verifica si el monto del consumo es mayor que el saldo
                         if (consumptionAmount > member.getFunds()) {
                             JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
                         } else {
-                            // Genera la factura
                             member.generateBill(billConcept, consumptionAmount);
                             JOptionPane.showMessageDialog(null, "Factura generada:\n" +
                                     "Concepto de la factura: " + billConcept + "\n" +
@@ -128,9 +124,8 @@ public class Main {
                     break;
             }
 
-        } while (choice != 7);  // Salir
+        } while (choice != 7);  
 
-        // Guardar datos antes de salir
         fileHandler.guardarDatos(club.members);
     }
 }
