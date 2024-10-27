@@ -1,2 +1,2 @@
-# TrabajoSegundoPeriodo
-Este será el lugar donde subire mi proyecto del segundo periodo de mi comienzo en la programación 
+# CS1_Sistema_de_club_THE_AVENGERS_2.0
+**Nombre de la Materia:** Construcción de st
