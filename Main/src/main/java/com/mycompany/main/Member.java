@@ -28,7 +28,7 @@ abstract class Member {
 
     public void addFunds(double amount) {
         if (funds + amount > getMaxFunds()) {
-            System.out.println("Exceeds maximum allowed funds.");
+            System.out.println("Supera los fondos maximos permitidos.");
         } else {
             this.funds += amount;
         }
@@ -38,7 +38,7 @@ abstract class Member {
         if (authorizedPeople.size() < 10) {
             authorizedPeople.add(person);
         } else {
-            System.out.println("Cannot add more authorized people.");
+            System.out.println("No se pueden agregar mas personas autorizadas.");
         }
     }
 
@@ -51,9 +51,9 @@ abstract class Member {
             Bill bill = new Bill(concept, amount);
             unpaidBills.add(bill); // Agrega la factura a la lista de facturas sin pagar
             this.funds -= amount; // Descuenta el monto de los fondos del socio
-            System.out.println("Bill generated: " + concept + " for amount: " + amount);
+            System.out.println("Factura generada: " + concept + " por cantidad: " + amount);
         } else {
-            System.out.println("Insufficient funds to generate bill.");
+            System.out.println("Fondos insuficientes para generar factura.");
         }
     }
 
@@ -65,15 +65,15 @@ abstract class Member {
                     funds -= billAmount; 
                     bill.markAsPaid();
                     unpaidBills.remove(bill); 
-                    System.out.println("Bill paid: " + billConcept);
+                    System.out.println("Factura pagada: " + billConcept);
                     return true;
                 } else {
-                    System.out.println("Insufficient funds to pay the bill.");
+                    System.out.println("Fondos insuficientes para pagar la factura.");
                     return false;
                 }
             }
         }
-        System.out.println("Bill not found or already paid.");
+        System.out.println("Factura no encontrada.");
         return false;
     }
 
