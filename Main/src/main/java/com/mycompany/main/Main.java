@@ -20,24 +20,31 @@ public class Main {
 
             switch (choice) {
                 case 0:  
-                    String id = JOptionPane.showInputDialog("Ingrese Cedula:");
-                    if (!id.matches("\\d+")) {
-                        JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
-                        break; 
-                    }
+    String id = JOptionPane.showInputDialog("Ingrese Cedula:");
+    if (!id.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
+        break; 
+    }
 
-                    String name = JOptionPane.showInputDialog("Ingrese nombre:");
-                    String type = JOptionPane.showInputDialog("Ingrese tipo (Regular/VIP):");
+    // Verifica si el socio ya existe
+    if (club.members.containsKey(id)) {
+        JOptionPane.showMessageDialog(null, "El socio ya existe. No se puede agregar.");
+        break; 
+    }
 
-                    if (type.equalsIgnoreCase("Regular")) {
-                        club.addMember(new RegularMember(id, name)); 
-                    } else if (type.equalsIgnoreCase("VIP")) {
-                        club.addMember(new VIPMember(id, name));
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Tipo invalido.");
-                    }
-                    break;
+    String name = JOptionPane.showInputDialog("Ingrese nombre:");
+    String type = JOptionPane.showInputDialog("Ingrese tipo (Regular/VIP):");
 
+    if (type.equalsIgnoreCase("Regular")) {
+        club.addMember(new RegularMember(id, name)); 
+        JOptionPane.showMessageDialog(null, "Socio agregado!:\nCedula: " + id + "\nNombre: " + name + "\nTipo: Regular");
+    } else if (type.equalsIgnoreCase("VIP")) {
+        club.addMember(new VIPMember(id, name));
+        JOptionPane.showMessageDialog(null, "Socio agregado:\nCedula: " + id + "\nNombre: " + name + "\nTipo: VIP");
+    } else {
+        JOptionPane.showMessageDialog(null, "Tipo invalido.");
+    }
+    break;
                 case 1:  
                     id = JOptionPane.showInputDialog("Ingrese cedula del socio a eliminar:");
                     if (club.removeMember(id)) {
@@ -102,26 +109,29 @@ public class Main {
                     break;
 
                 case 6:  
-                    String memberId = JOptionPane.showInputDialog("Ingrese cedula del socio:");
-                    member = club.members.get(memberId);
-                    
-                    if (member == null) {
-                        JOptionPane.showMessageDialog(null, "No esta registrado en el sistema.");
-                    } else {
-                        String billConcept = JOptionPane.showInputDialog("Ingrese concepto del consumo:");
-                        double consumptionAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese monto del consumo:"));
-
-                        if (consumptionAmount > member.getFunds()) {
-                            JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
-                        } else {
-                            member.generateBill(billConcept, consumptionAmount);
-                            JOptionPane.showMessageDialog(null, "Factura generada:\n" +
-                                    "Concepto de la factura: " + billConcept + "\n" +
-                                    "Valor de la factura: " + consumptionAmount + "\n" +
-                                    "Nombre del socio: " + member.getName());
-                        }
-                    }
-                    break;
+    String memberId = JOptionPane.showInputDialog("Ingrese cedula del socio:");
+    member = club.members.get(memberId);
+    
+    if (member == null) {
+        JOptionPane.showMessageDialog(null, "No esta registrado en el sistema.");
+    } else {
+        String billConcept = JOptionPane.showInputDialog("Ingrese concepto del consumo:");
+        double consumptionAmount;
+        
+        try {
+            consumptionAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese monto del consumo:"));
+            
+            // Genera la factura sin restar del fondo
+            member.generateBill(billConcept, consumptionAmount);
+            JOptionPane.showMessageDialog(null, "Factura generada:\n" +
+                    "Concepto de la factura: " + billConcept + "\n" +
+                    "Valor de la factura: " + consumptionAmount + "\n" +
+                    "Nombre del socio: " + member.getName());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un monto valido.");
+        }
+    }
+    break;
             }
 
         } while (choice != 7);  
