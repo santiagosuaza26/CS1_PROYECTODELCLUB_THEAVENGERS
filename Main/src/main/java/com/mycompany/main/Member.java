@@ -47,14 +47,10 @@ abstract class Member {
     }
 
     public void generateBill(String concept, double amount) {
-        if (funds >= amount) { // Verifica si hay fondos suficientes
-            Bill bill = new Bill(concept, amount);
-            unpaidBills.add(bill); // Agrega la factura a la lista de facturas sin pagar
-            this.funds -= amount; // Descuenta el monto de los fondos del socio
-            System.out.println("Factura generada: " + concept + " por cantidad: " + amount);
-        } else {
-            System.out.println("Fondos insuficientes para generar factura.");
-        }
+        // Se genera una factura sin verificar fondos, sólo se agrega a la lista de facturas
+        Bill bill = new Bill(concept, amount);
+        unpaidBills.add(bill); // Agrega la factura a la lista de facturas sin pagar
+        System.out.println("Factura generada: " + concept + " por cantidad: " + amount);
     }
 
     public boolean payBill(String billConcept) {
