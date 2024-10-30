@@ -25,8 +25,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, "La cedula debe contener solo numeros.");
         break; 
     }
-
-    // Verifica si el socio ya existe
+                    
     if (club.members.containsKey(id)) {
         JOptionPane.showMessageDialog(null, "El socio ya existe. No se puede agregar.");
         break; 
@@ -121,7 +120,6 @@ public class Main {
         try {
             consumptionAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese monto del consumo:"));
             
-            // Genera la factura sin restar del fondo
             member.generateBill(billConcept, consumptionAmount);
             JOptionPane.showMessageDialog(null, "Factura generada:\n" +
                     "Concepto de la factura: " + billConcept + "\n" +
