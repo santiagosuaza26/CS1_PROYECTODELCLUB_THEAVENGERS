@@ -42,13 +42,13 @@ abstract class Member {
     }
 
     public HashSet<String> getAuthorizedPeople() {
-        return new HashSet<>(authorizedPeople); // Retorna una copia para evitar modificaciones externas
+        return new HashSet<>(authorizedPeople);
     }
 
     public void generateBill(String concept, double amount) {
         
         Bill bill = new Bill(concept, amount);
-        unpaidBills.add(bill); // Agrega la factura a la lista de facturas sin pagar
+        unpaidBills.add(bill);
         System.out.println("Factura generada: " + concept + " por cantidad: " + amount);
     }
 
