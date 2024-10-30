@@ -15,13 +15,12 @@ abstract class Member {
         this.name = name;
         this.funds = initialFunds;
         this.authorizedPeople = new HashSet<>();
-        this.unpaidBills = new ArrayList<>(); // Inicializa la lista de facturas
+        this.unpaidBills = new ArrayList<>();
     }
 
     public abstract double getMaxFunds();
     public abstract String getMemberType();
-
-    // Getters
+    
     public String getId() { return id; }
     public String getName() { return name; }
     public double getFunds() { return funds; }
@@ -47,7 +46,7 @@ abstract class Member {
     }
 
     public void generateBill(String concept, double amount) {
-        // Se genera una factura sin verificar fondos, sólo se agrega a la lista de facturas
+        
         Bill bill = new Bill(concept, amount);
         unpaidBills.add(bill); // Agrega la factura a la lista de facturas sin pagar
         System.out.println("Factura generada: " + concept + " por cantidad: " + amount);
