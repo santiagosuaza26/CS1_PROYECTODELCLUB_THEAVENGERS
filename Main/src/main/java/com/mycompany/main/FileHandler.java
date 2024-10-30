@@ -77,7 +77,7 @@ public class FileHandler {
 
                     String[] billData = line.split(",");
                     if (billData.length < 5) {
-                        System.out.println("Linea de factura invalida: " + line);
+                        System.out.println("Factura : " + line);
                         continue; 
                     }
                     
