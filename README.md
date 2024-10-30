@@ -11,10 +11,10 @@
 Este proyecto implementa un sistema para gestionar socios de un club,
 incluyendo afiliados, facturas y generación de deudas.
 **Requerimientos:**
-* Java 22
+* Java 23
 **Instrucciones de compilación y ejecución:**
 1. Clonar el repositorio.
 2. Ejecutar `mvn clean package` para compilar el proyecto.
-3. Ejecutar `java -jar target/sistema-gestion-alumnos.jar` para iniciar la
+3. Ejecutar `CS1_PROYECTODELCLUB_THEAVENGERS/MAIN` para iniciar la
 aplicación.
 **Licencia:** MIT
